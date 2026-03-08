@@ -5,7 +5,7 @@ import swaggerUi from 'swagger-ui-express'
 import { AppError } from './shared/errors/AppError'
 
 import { usersRoutes } from './routes/users.routes'
-import './database/DataSource'
+import './shared/database/DataSource'
 import './shared/container'
 import swaggerFile from './swagger.json'
 

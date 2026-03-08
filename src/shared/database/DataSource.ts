@@ -6,7 +6,7 @@ export const AppDataSource = new DataSource({
   synchronize: false,
   logging: false,
   entities: ['./src/modules/users/entities/**.ts'],
-  migrations: ['./src/database/migrations/**.ts'],
+  migrations: ['./src/shared/database/migrations/**.ts'],
   migrationsRun: false,
 })
 

@@ -1,4 +1,4 @@
-import { AppDataSource } from '../../../../database/DataSource'
+import { AppDataSource } from '../../../../shared/database/DataSource'
 import { User } from '../../entities/User'
 import { IUsersRepository } from '../IUsersRepository'
 import { ICreateUserDTO, IUpdateUserDTO, IUpdateUserAvatarDTO, PublicUserInfoDTO } from '../../dtos'
