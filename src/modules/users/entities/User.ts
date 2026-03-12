@@ -21,6 +21,9 @@ class User {
   @Column('varchar')
   avatar: string
 
+  @Column('boolean')
+  isAdmin: boolean
+
   @CreateDateColumn()
   created_at: Date
 
