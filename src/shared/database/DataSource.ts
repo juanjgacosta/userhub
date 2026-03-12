@@ -1,4 +1,5 @@
 import { DataSource } from 'typeorm'
+import { createAdminUser } from './seed/CreateAdminUser'
 
 export const AppDataSource = new DataSource({
   type: 'sqlite',
@@ -16,6 +17,9 @@ AppDataSource.initialize()
 
     await AppDataSource.runMigrations()
     console.log('Migrations executed successfully')
+
+    const userAdmin = await createAdminUser()
+    console.log('[DataSource]', userAdmin)
   })
   .catch((err) => {
     console.error('Database error connection: ', err)

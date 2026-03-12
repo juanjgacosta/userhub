@@ -3,8 +3,8 @@ import { ICreateUserDTO, IUpdateUserDTO, IUpdateUserAvatarDTO, PublicUserInfoDTO
 
 interface IUsersRepository {
   createUser({ name, email, company, password, avatar }: ICreateUserDTO): Promise<User>
-  findUserByEmail(email: string): Promise<User>
-  findUserById(id: string): Promise<User>
+  findUserByEmail(email: string): Promise<User | null>
+  findUserById(id: string): Promise<User | null>
   listUsers(): Promise<PublicUserInfoDTO[]>
   removeUser(id: string): Promise<User>
   updateUser({ id, name, email, company, password }: IUpdateUserDTO): Promise<any>

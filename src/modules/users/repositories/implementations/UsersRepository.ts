@@ -5,7 +5,14 @@ import { ICreateUserDTO, IUpdateUserDTO, IUpdateUserAvatarDTO, PublicUserInfoDTO
 import { hash } from 'bcryptjs'
 
 class UsersRepository implements IUsersRepository {
-  async createUser({ name, email, company, password, avatar }: ICreateUserDTO): Promise<User> {
+  async createUser({
+    name,
+    email,
+    company,
+    password,
+    avatar,
+    isAdmin = false,
+  }: ICreateUserDTO): Promise<User> {
     const userRepository = AppDataSource.getRepository(User)
 
     const passwordHash = await hash(password, 8)
@@ -16,11 +23,12 @@ class UsersRepository implements IUsersRepository {
       company,
       password: passwordHash,
       avatar,
+      isAdmin
     })
     await userRepository.save(user)
     return user
   }
-  async findUserByEmail(email: string): Promise<User> {
+  async findUserByEmail(email: string): Promise<User | null> {
     const userRepository = AppDataSource.getRepository(User)
     const user = await userRepository.findOne({
       where: {
@@ -30,7 +38,7 @@ class UsersRepository implements IUsersRepository {
     return user
   }
 
-  async findUserById(id: string): Promise<User> {
+  async findUserById(id: string): Promise<User | null> {
     const userRepository = AppDataSource.getRepository(User)
     const user = await userRepository.findOne({
       where: {
