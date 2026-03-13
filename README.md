@@ -112,6 +112,7 @@ The `User` entity represents an application user and contains:
 | company    | varchar   | Company name          |
 | password   | varchar   | Hashed password       |
 | avatar     | varchar   | Avatar file reference |
+| isAdmin    | boolean   | Admin permissions     |
 | created_at | timestamp | Creation date         |
 | updated_at | timestamp | Last update date      |
 
