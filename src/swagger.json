@@ -65,8 +65,8 @@
               "examples": {
                 "adminUser": {
                   "value": {
-                    "email": "johndoe@email.com",
-                    "password": "mudar123"
+                    "email": "admin@email.com",
+                    "password": "admin"
                   }
                 }
               }
@@ -84,8 +84,8 @@
                 "examples": {
                   "token": {
                     "value": {
-                      "name": "John Doe",
-                      "email": "johndoe@email.com",
+                      "name": "admin",
+                      "email": "admin@email.com",
                       "token": "JwtToken"
                     }
                   }
