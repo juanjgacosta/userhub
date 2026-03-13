@@ -6,10 +6,11 @@ import { ListUsersController } from '../modules/users/controllers/ListUsersContr
 import { RemoveUserController } from '../modules/users/controllers/RemoveUserController'
 import { UpdateUserController } from '../modules/users/controllers/UpdateUserController'
 import { AuthenticateUserController } from '../modules/users/controllers/AuthenticateUserController'
+import { UpdateUserAvatarController } from '../modules/users/controllers/UpdateUserAvatarController'
 
+import { ensureAdmin } from '../shared/middlewares/ensureAdmin'
 import { ensureAuthenticated } from '../shared/middlewares/ensureAuthenticated'
 
-import { UpdateUserAvatarController } from '../modules/users/controllers/UpdateUserAvatarController'
 import uploadConfig from '../config/upoad'
 
 const usersRoutes = Router()
@@ -23,12 +24,12 @@ const removeUserController = new RemoveUserController()
 const authenticateUserController = new AuthenticateUserController()
 const updateUserAvatarController = new UpdateUserAvatarController()
 
+usersRoutes.post('/auth', ensureAdmin, authenticateUserController.handle)
+
 usersRoutes.post('/', ensureAuthenticated, createUserController.handle)
 usersRoutes.get('/', listUsersController.handle)
 usersRoutes.put('/:id', ensureAuthenticated, updateUserController.handle)
 usersRoutes.delete('/:id', ensureAuthenticated, removeUserController.handle)
-
-usersRoutes.post('/auth', authenticateUserController.handle)
 
 usersRoutes.patch(
   '/:id/avatar',
