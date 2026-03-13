@@ -1,21 +1,25 @@
 import { DataSource } from 'typeorm'
+import { createAdminUser } from './seed/CreateAdminUser'
 
 export const AppDataSource = new DataSource({
   type: 'sqlite',
-  // host: 'localhost',
-  // port: 4001,
-  // username: 'root',
-  // password: 'root',
   database: './database.sqlite',
   synchronize: false,
   logging: false,
   entities: ['./src/modules/users/entities/**.ts'],
-  migrations: ['./src/database/migrations/**.ts'],
+  migrations: ['./src/shared/database/migrations/**.ts'],
+  migrationsRun: false,
 })
 
 AppDataSource.initialize()
-  .then((async) => {
+  .then(async () => {
     console.log('Database connection ok')
+
+    await AppDataSource.runMigrations()
+    console.log('Migrations executed successfully')
+
+    const userAdmin = await createAdminUser()
+    console.log('[DataSource]', userAdmin)
   })
   .catch((err) => {
     console.error('Database error connection: ', err)
