@@ -1,3 +1,14 @@
+import { Header } from "./components/Header";
+import { Sidebar } from "./components/Sidebar";
+
+import "./global.css";
+
 export function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <div>
+      <Header />
+      <Sidebar />
+      <p>Main Area</p>
+    </div>
+  );
 }
