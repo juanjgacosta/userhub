@@ -14,9 +14,13 @@
   "scripts": {
     "dev:api": "npm run dev --workspace=userhub-api",
     "test:api": "npm run test --workspace=userhub-api",
-    "dev:web": "npm run dev --workspace=userhub-web"
+    "dev:web": "npm run dev --workspace=userhub-web",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\""
   },
   "keywords": [],
   "author": "Juan JG Acosta - <juan_jg@hotmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
 }
