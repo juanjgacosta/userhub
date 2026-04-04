@@ -1,20 +1,20 @@
 import { LayoutDashboard, Settings, Users } from "lucide-react";
 import styles from "../assets/styles/Sidebar.module.css";
-export function SidebarNav() {
+export function NavigationSidebar() {
   return (
-    <nav className={styles.sidebarNav}>
+    <nav className={styles.navigationSidebar}>
       <a href="">
-        <LayoutDashboard className={styles.sidebarNavIcon} />
+        <LayoutDashboard className={styles.navigationSidebarIcon} />
         <span>Dashboard</span>
       </a>
 
       <a href="">
-        <Users className={styles.sidebarNavIcon} />
+        <Users className={styles.navigationSidebarIcon} />
         <span>Users</span>
       </a>
 
       <a href="">
-        <Settings className={styles.sidebarNavIcon} />
+        <Settings className={styles.navigationSidebarIcon} />
         <span>Settings</span>
       </a>
     </nav>

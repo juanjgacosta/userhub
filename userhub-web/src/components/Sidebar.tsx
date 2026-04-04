@@ -1,7 +1,7 @@
 import styles from "../assets/styles/Sidebar.module.css";
 
 // import userHubLogo from "../assets/images/logo-userhub.svg";
-import { SidebarNav } from "./SidebarNav";
+import { NavigationSidebar } from "./NavigationSidebar";
 
 export function Sidebar() {
   return (
@@ -11,7 +11,7 @@ export function Sidebar() {
         <span>UserHub</span>
       </strong>
 
-      <SidebarNav />
+      <NavigationSidebar />
     </aside>
   );
 }
