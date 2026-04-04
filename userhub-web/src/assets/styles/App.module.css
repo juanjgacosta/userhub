@@ -9,9 +9,3 @@
   padding-top: 2rem;
   padding-bottom: 3rem;
 }
-
-.sidebar {
-  border-right: 1px solid var(--zinc-200);
-  padding-left: 1.25rem;
-  padding-top: 2rem;
-}

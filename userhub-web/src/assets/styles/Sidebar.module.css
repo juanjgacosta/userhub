@@ -1,4 +1,40 @@
 .sidebar {
-  background: oklch(37.9% 0.146 265.522);
-  color: white;
+  border-right: 1px solid var(--zinc-200);
+  padding-left: 1.25rem;
+  padding-top: 2rem;
+}
+
+.sidebarLogo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.sidebarLogo img {
+  height: 1.5rem;
+}
+
+.sidebarLogo span {
+  font-size: 1.5rem;
+  color: var(--zinc-900);
+}
+
+.sidebarNav {
+  margin-top: 1.25rem;
+}
+
+.sidebarNav a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.sidebarNav span {
+  color: var(--zinc-700);
+}
+.sidebarNavIcon {
+  height: 1.25rem;
+  width: 1.25rem;
+  margin-right: 0.5rem;
+  color: var(--zinc-500);
 }

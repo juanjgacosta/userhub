@@ -1,11 +1,12 @@
 import styles from "../src/assets/styles/App.module.css";
+import { Sidebar } from "./components/Sidebar";
 
 import "./global.css";
 
 export function App() {
   return (
     <div className={styles.wrapper}>
-      <aside className={styles.sidebar}>Sidebar</aside>
+      <Sidebar />
       <main className={styles.main}>Main</main>
     </div>
   );
