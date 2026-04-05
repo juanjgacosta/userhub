@@ -1,6 +1,6 @@
 import type { ElementType } from "react";
 
-import styles from "../assets/styles/Sidebar.module.css";
+import styles from "../assets/styles/NavigationSidebarItem.module.css";
 
 interface NavigationSidebarItemProps {
   title: string;
@@ -12,8 +12,8 @@ export function NavigationSidebarItem({
   icon: Icon,
 }: NavigationSidebarItemProps) {
   return (
-    <a href="">
-      <Icon className={styles.navigationSidebarIcon} />
+    <a href="" className={styles.navigationItem}>
+      <Icon className={styles.navigationIcon} />
       <span>{title}</span>
     </a>
   );
