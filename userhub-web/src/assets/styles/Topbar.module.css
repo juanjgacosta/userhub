@@ -1,0 +1,47 @@
+.topbarMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: var(--white);
+  border-radius: 0.5rem;
+}
+
+.topbarTitle {
+  font-size: 1rem;
+  color: var(--zinc-900);
+  font-weight: 700;
+}
+
+.topbarInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.topbarInfo img {
+  height: 40px;
+  weight: 40px;
+  border-radius: 1.5rem;
+
+}
+
+.topbarInfo button {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border: 1px solid var(--zinc-200);
+  background: var(--zinc-100);
+  border-radius: 0.5rem;
+  font-size: small;
+}
+
+.topbarInfo button:hover {
+  cursor: pointer;
+  background: var(--zinc-200);
+
+}

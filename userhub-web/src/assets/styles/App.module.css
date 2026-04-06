@@ -5,8 +5,18 @@
 }
 
 .main {
-  padding-left: 2rem;
   padding-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   padding-bottom: 3rem;
-  background: var(--zinc-50);
+  background: var(--zinc-100);
+}
+
+.mainPage {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+  background: var(--white);
+  border-radius: 0.5rem;
 }
