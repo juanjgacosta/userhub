@@ -1,21 +1,39 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { AppLayout } from "../layout/AppLayout";
+
 import { Home } from "../pages/Home/Home";
 import { Dashboard } from "../pages/Dashboard/Dashboard";
 import { Users } from "../pages/Users/Users";
 import { Settings } from "../pages/Settings/Settings";
 
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+        handle: { title: "Home" },
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+        handle: { title: "Dashboard" },
+      },
+      {
+        path: "/users",
+        element: <Users />,
+        handle: { title: "Users" },
+      },
+      {
+        path: "/settings",
+        element: <Settings />,
+        handle: { title: "Settings" },
+      },
+    ],
+  },
+]);
+
 export function AppRoutes() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<AppLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/settings" element={<Settings />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
