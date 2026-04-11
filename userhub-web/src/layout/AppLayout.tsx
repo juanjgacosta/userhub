@@ -2,7 +2,7 @@ import { Sidebar } from "../components/Sidebar";
 import { Topbar } from "../components/Topbar";
 import { Outlet } from "react-router-dom";
 
-import styles from "../assets/styles/App.module.css";
+import styles from "../assets/styles/AppLayout.module.css";
 
 export function AppLayout() {
   return (
