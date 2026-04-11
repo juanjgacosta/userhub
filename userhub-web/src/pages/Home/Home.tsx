@@ -10,19 +10,21 @@ export function Home() {
 
       <div className={styles.userInfoContainer}>
         <div className={styles.totalUsersContainer}>
-          <span>Total Users</span>
-          <span>24,860</span>
+          <span className={styles.totalUsersLabel}>Total Users</span>
+          <span className={styles.totalUsersValue}>24,860</span>
         </div>
         <div className={styles.activeUsersContainer}>
-          <span>Active Users</span>
-          <span>19,420</span>
+          <span className={styles.activeUsersLabel}>Active Users</span>
+          <span className={styles.activeUsersValue}>19,420</span>
         </div>
       </div>
 
       <div className={styles.homeActivity}>
-        <div>Recent Activity</div>
-        <span>3 users invited in the last hour</span>
-        <span>2 profile updates pending approval</span>
+        <div className={styles.homeActivityTitle}>Recent Activity</div>
+        <div className={styles.homeActivityInfo}>
+          <span>3 users invited in the last hour</span>
+          <span>2 profile updates pending approval</span>
+        </div>
       </div>
     </>
   );
