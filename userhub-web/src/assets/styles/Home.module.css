@@ -1,0 +1,46 @@
+.homeTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.homeTitle strong {
+  font-size: x-large;
+}
+
+.homeTitle p {
+  font-size: medium;
+  color: var(--zinc-500);
+}
+
+.userInfoContainer {
+  gap: 2rem;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.totalUsersContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--zinc-200);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.activeUsersContainer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--zinc-200);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.homeActivity {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--zinc-200);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}

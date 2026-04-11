@@ -43,5 +43,4 @@
 .topbarInfo button:hover {
   cursor: pointer;
   background: var(--zinc-200);
-
 }
