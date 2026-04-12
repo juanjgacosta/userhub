@@ -13,16 +13,23 @@ export function Topbar() {
   const title = (currentRoute?.handle as RouterHandle)?.title || "UserHub";
 
   return (
-    <div className={styles.topbarMain}>
-      <aside className={styles.topbarTitle}>{title}</aside>
-      <div className={styles.topbarInfo}>
-        <img
-          src="https://github.com/juanjgacosta.png"
-          alt="Gómez's profile picture"
-        />
-        <span>Juan Gómez Admin</span>
-        <button>Logout</button>
+    <header className={styles.container}>
+      <h1 className={styles.title}>{title}</h1>
+
+      <div className={styles.actions}>
+        <div className={styles.user}>
+          <img
+            src="https://github.com/juanjgacosta.png"
+            alt="Gómez's profile picture"
+          />
+          <div className={styles.userInfo}>
+            <span className={styles.userName}>Juan Gómez</span>
+            <span className={styles.userRole}>Admin</span>
+          </div>
+        </div>
+
+        <button className={styles.logoutButton}>Logout</button>
       </div>
-    </div>
+    </header>
   );
 }
