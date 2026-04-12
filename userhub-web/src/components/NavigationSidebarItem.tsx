@@ -18,12 +18,10 @@ export function NavigationSidebarItem({
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `${styles.navigationItem} ${
-          isActive ? styles.navigationItemActive : ""
-        }`
+        `${styles.item} ${isActive ? styles.itemActive : ""}`
       }
     >
-      <Icon className={styles.navigationIcon} />
+      <Icon className={styles.icon} />
       <span>{title}</span>
     </NavLink>
   );

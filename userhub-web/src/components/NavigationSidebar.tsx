@@ -5,7 +5,7 @@ import styles from "../assets/styles/NavigationSidebar.module.css";
 
 export function NavigationSidebar() {
   return (
-    <nav className={styles.navigationSidebar}>
+    <nav className={styles.container}>
       <NavigationSidebarItem title="Home" icon={Home} to="/" />
       <NavigationSidebarItem
         title="Dashboard"

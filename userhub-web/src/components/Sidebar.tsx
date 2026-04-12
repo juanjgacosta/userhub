@@ -5,11 +5,11 @@ import { NavigationSidebar } from "./NavigationSidebar";
 
 export function Sidebar() {
   return (
-    <aside className={styles.sidebar}>
-      <strong className={styles.sidebarTitle}>
+    <aside className={styles.container}>
+      <header className={styles.header}>
         {/* <img src={userHubLogo} alt="UserHub Logo" /> */}
-        <span>UserHub</span>
-      </strong>
+        <h2 className={styles.title}>UserHub</h2>
+      </header>
 
       <NavigationSidebar />
     </aside>
