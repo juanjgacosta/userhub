@@ -6,13 +6,13 @@ import styles from "../assets/styles/AppLayout.module.css";
 
 export function AppLayout() {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.container}>
       <Sidebar />
       <main className={styles.main}>
         <Topbar />
-        <div className={styles.mainPage}>
+        <section className={styles.content}>
           <Outlet />
-        </div>
+        </section>
       </main>
     </div>
   );
