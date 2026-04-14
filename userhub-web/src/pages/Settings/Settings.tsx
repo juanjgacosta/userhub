@@ -6,58 +6,94 @@ export function Settings() {
     <main className={styles.container}>
       <header className={styles.header}>
         <h1 className={styles.title}>Settings</h1>
-        <button>
+
+        <button
+          className={`${styles.button} ${styles.buttonPrimary}`}
+          type="submit"
+        >
           <Save size={18} />
-          <p>Save Changes</p>
+          <span>Save Changes</span>
         </button>
       </header>
 
-      <section className={styles.activity}>
-        <h1 className={styles.activityTitle}>Profile settings</h1>
-        <p className={styles.activitySubtitle}>
-          Manage your public profile details and contact information.
-        </p>
+      <form className={styles.form}>
+        {/* PROFILE */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Profile settings</h2>
+          <p className={styles.sectionSubtitle}>
+            Manage your public profile details and contact information.
+          </p>
 
-        <section className={styles.card}>
-          <section className={styles.cards}>
-            <article className={styles.cardInfo}>
-              <span>Display name</span>
-              <input type="text" placeholder="Jane Admin" />
-            </article>
+          <div className={styles.card}>
+            <div className={styles.grid}>
+              <label className={styles.field}>
+                <span>Display name</span>
+                <input
+                  className={styles.input}
+                  type="text"
+                  placeholder="Jane Admin"
+                />
+              </label>
 
-            <article className={styles.cardInfo}>
-              <span>Email</span>
-              <input type="text" placeholder="jane@userhub.io" />
-            </article>
-          </section>
+              <label className={styles.field}>
+                <span>Email</span>
+                <input
+                  className={styles.input}
+                  type="email"
+                  placeholder="jane@userhub.io"
+                />
+              </label>
+            </div>
+          </div>
         </section>
-      </section>
 
-      <section className={styles.activity}>
-        <h1 className={styles.activityTitle}>Account settings</h1>
-        <p className={styles.activitySubtitle}>
-          Update your security and organization preferences.
-        </p>
+        {/* ACCOUNT */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Account settings</h2>
+          <p className={styles.sectionSubtitle}>
+            Update your security and organization preferences.
+          </p>
 
-        <section className={styles.card}>
-          <section className={styles.cards}>
-            <article className={styles.cardInfo}>
-              <span>Password</span>
-              <input type="password" placeholder="••••••••••••" />
-            </article>
+          <div className={styles.card}>
+            <div className={styles.grid}>
+              <label className={styles.field}>
+                <span>Password</span>
+                <input
+                  className={styles.input}
+                  type="password"
+                  placeholder="••••••••••••"
+                />
+              </label>
 
-            <article className={styles.cardInfo}>
-              <span>Organization</span>
-              <input type="text" placeholder="UserHub Inc." />
-            </article>
-          </section>
+              <label className={styles.field}>
+                <span>Organization</span>
+                <input
+                  className={styles.input}
+                  type="text"
+                  placeholder="UserHub Inc."
+                />
+              </label>
+            </div>
+          </div>
         </section>
-      </section>
 
-      <section className={styles.activityButtons}>
-        <button className={styles.buttonCancel}>Cancel</button>
-        <button className={styles.buttonSave}>Save Changes</button>
-      </section>
+        {/* ACTIONS */}
+        <div className={styles.actions}>
+          <button
+            type="button"
+            className={`${styles.button} ${styles.buttonSecondary}`}
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            className={`${styles.button} ${styles.buttonPrimary}`}
+          >
+            Save Changes
+          </button>
+        </div>
+      </form>
     </main>
   );
 }

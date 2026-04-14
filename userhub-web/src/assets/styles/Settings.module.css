@@ -8,6 +8,7 @@
 .header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .title {
@@ -15,112 +16,93 @@
   font-weight: 700;
 }
 
-.header button {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  gap: 1rem;
-
-  font-size: 0.875rem;
-  font-weight: 700;
-
-  background: var(--blue-600);
-  color: var(--white);
-  border: 1px solid transparent;
-  border-radius: 0.75rem;
-}
-
-/* CARDS */
-.activity {
+/* FORM */
+.form {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  padding: 1rem;
+  gap: 1.5rem;
+}
 
+/* SECTION */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  padding: 1rem;
   border: 1px solid var(--zinc-200);
   border-radius: 0.75rem;
+  background: var(--white);
 }
 
-.activityTitle {
+.sectionTitle {
   font-size: 1rem;
-  color: var(--zinc-900);
+  font-weight: 600;
 }
 
-.activitySubtitle {
+.sectionSubtitle {
   font-size: 0.875rem;
   color: var(--zinc-500);
 }
 
+/* CARD */
 .card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding-top: 1rem;
+  margin-top: 0.5rem;
 }
 
-.cards {
+/* GRID */
+.grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-.cardInfo {
+/* FIELD */
+.field {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
-.cardInfo input {
-  color: var(--zinc-900;);
-}
-
-.cardInfo input {
+/* INPUT */
+.input {
   padding: 0.5rem;
   border: 1px solid var(--zinc-200);
   border-radius: 0.5rem;
 }
 
-.activityButtons {
+/* ACTIONS */
+.actions {
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
 }
 
-.buttonCancel {
-  padding: 0.25rem 0.75rem;
+/* BUTTONS */
+.button {
+  display: flex;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
   border-radius: 0.5rem;
-
-  border: 1px solid var(--zinc-200);
-  background: var(--white);
-
   font-size: 0.875rem;
   cursor: pointer;
-
-  transition: background 0.2s ease;
 }
 
-.buttonCancel:hover {
+.buttonSecondary {
+  border: 1px solid var(--zinc-200);
+  background: var(--white);
+}
+
+.buttonSecondary:hover {
   background: var(--zinc-100);
 }
 
-.buttonSave {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  gap: 1rem;
-
-  font-weight: 700;
-  font-size: 0.875rem;
-  cursor: pointer;
-
+.buttonPrimary {
   border: 1px solid transparent;
   background: var(--blue-600);
   color: var(--white);
-  border-radius: 0.75rem;
-
-  transition: background 0.2s ease;
 }
 
-.buttonSave:hover {
+.buttonPrimary:hover {
   background: var(--blue-500);
 }
