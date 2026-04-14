@@ -3,7 +3,7 @@ import styles from "../../assets/styles/Dashboard.module.css";
 export function Dashboard() {
   return (
     <main className={styles.container}>
-      <header>
+      <header className={styles.header}>
         <h1 className={styles.title}>Dashboard</h1>
         <p className={styles.subtitle}>
           Track growth and account health at a glance.
