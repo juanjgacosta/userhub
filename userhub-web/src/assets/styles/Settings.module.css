@@ -77,32 +77,3 @@
   justify-content: flex-end;
   gap: 0.5rem;
 }
-
-/* BUTTONS */
-.button {
-  display: flex;
-  padding: 0.5rem 1rem;
-  gap: 1rem;
-  border-radius: 0.5rem;
-  font-size: 0.875rem;
-  cursor: pointer;
-}
-
-.buttonSecondary {
-  border: 1px solid var(--zinc-200);
-  background: var(--white);
-}
-
-.buttonSecondary:hover {
-  background: var(--zinc-100);
-}
-
-.buttonPrimary {
-  border: 1px solid transparent;
-  background: var(--blue-600);
-  color: var(--white);
-}
-
-.buttonPrimary:hover {
-  background: var(--blue-500);
-}

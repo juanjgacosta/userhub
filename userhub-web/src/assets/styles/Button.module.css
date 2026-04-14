@@ -1,0 +1,27 @@
+.button {
+  display: flex;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.primary {
+  border: 1px solid transparent;
+  background: var(--blue-600);
+  color: var(--white);
+}
+
+.primary:hover {
+  background: var(--blue-500);
+}
+
+.secondary {
+  border: 1px solid var(--zinc-200);
+  background: var(--white);
+}
+
+.secondary:hover {
+  background: var(--zinc-100);
+}

@@ -1,5 +1,6 @@
 import { Save } from "lucide-react";
 import styles from "../../assets/styles/Settings.module.css";
+import { Button, ButtonPrefix } from "../../components/Button";
 
 export function Settings() {
   return (
@@ -7,16 +8,17 @@ export function Settings() {
       <header className={styles.header}>
         <h1 className={styles.title}>Settings</h1>
 
-        <button
-          className={`${styles.button} ${styles.buttonPrimary}`}
-          type="submit"
+        <Button
+          variantType="submit"
+          variantStyle="primary"
+          label="Save Changes"
+          form="settings-form"
         >
-          <Save size={18} />
-          <span>Save Changes</span>
-        </button>
+          <ButtonPrefix icon={Save} />
+        </Button>
       </header>
 
-      <form className={styles.form}>
+      <form className={styles.form} id="settings-form">
         {/* PROFILE */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Profile settings</h2>
@@ -79,19 +81,17 @@ export function Settings() {
 
         {/* ACTIONS */}
         <div className={styles.actions}>
-          <button
-            type="button"
-            className={`${styles.button} ${styles.buttonSecondary}`}
-          >
-            Cancel
-          </button>
+          <Button
+            variantType="button"
+            variantStyle="secundary"
+            label="Cancel"
+          ></Button>
 
-          <button
-            type="submit"
-            className={`${styles.button} ${styles.buttonPrimary}`}
-          >
-            Save Changes
-          </button>
+          <Button
+            variantType="submit"
+            variantStyle="primary"
+            label="Save Changes"
+          ></Button>
         </div>
       </form>
     </main>
