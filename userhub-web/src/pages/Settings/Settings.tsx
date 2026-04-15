@@ -19,7 +19,6 @@ export function Settings() {
       </header>
 
       <form className={styles.form} id="settings-form">
-        {/* PROFILE */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Profile settings</h2>
           <p className={styles.sectionSubtitle}>
@@ -49,7 +48,6 @@ export function Settings() {
           </div>
         </section>
 
-        {/* ACCOUNT */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Account settings</h2>
           <p className={styles.sectionSubtitle}>
@@ -79,7 +77,6 @@ export function Settings() {
           </div>
         </section>
 
-        {/* ACTIONS */}
         <div className={styles.actions}>
           <Button
             variantType="button"

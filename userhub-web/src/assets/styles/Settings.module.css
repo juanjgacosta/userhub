@@ -4,7 +4,6 @@
   gap: 1.5rem;
 }
 
-/* HEADER */
 .header {
   display: flex;
   justify-content: space-between;
@@ -16,14 +15,12 @@
   font-weight: 700;
 }
 
-/* FORM */
 .form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-/* SECTION */
 .section {
   display: flex;
   flex-direction: column;
@@ -45,33 +42,28 @@
   color: var(--zinc-500);
 }
 
-/* CARD */
 .card {
   margin-top: 0.5rem;
 }
 
-/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
-/* FIELD */
 .field {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
 
-/* INPUT */
 .input {
   padding: 0.5rem;
   border: 1px solid var(--zinc-200);
   border-radius: 0.5rem;
 }
 
-/* ACTIONS */
 .actions {
   display: flex;
   justify-content: flex-end;
