@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--zinc-500);
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  border: 1px solid var(--zinc-200);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.cardLabel {
+  font-size: 0.75rem;
+  color: var(--zinc-500);
+}
+
+.cardValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* ACTIVITY */
+.activity {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  border: 1px solid var(--zinc-200);
+  border-radius: 0.5rem;
+  padding: 1rem;
+
+  background: var(--white);
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.activityInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  font-size: 0.875rem;
+  color: var(--zinc-700);
+}

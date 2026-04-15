@@ -1,20 +1,21 @@
-.sidebar {
+.container {
   border-right: 1px solid var(--zinc-200);
   padding-left: 1.25rem;
   padding-top: 2rem;
 }
 
-.sidebarTitle {
+.header {
   display: flex;
   align-items: baseline;
   gap: 0.5rem;
 }
 
-/* .sidebarTitle img {
-  height: 1.5rem;
+/* .header img {
+  width: 40px;
+  height: 40px;
 } */
 
-.sidebarTitle span {
+.title {
   font-size: 1.5rem;
   color: var(--zinc-900);
 }

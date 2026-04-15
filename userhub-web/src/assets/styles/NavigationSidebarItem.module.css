@@ -1,4 +1,4 @@
-.navigationItem {
+.item {
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -11,14 +11,15 @@
   transition: all 0.2s ease;
 }
 
-.navigationItem:hover {
+.item:hover,
+.itemActive {
   background: var(--blue-50);
-  /* border: 1px solid var(--blue-200); */
   color: var(--blue-700);
+  /* border: 1px solid var(--blue-200); */
   box-shadow: 0 0 0 1px var(--blue-200);
 }
 
-.navigationIcon {
+.icon {
   height: 1.25rem;
   width: 1.25rem;
 }
