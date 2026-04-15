@@ -25,8 +25,31 @@ export function Button({
   children,
   form,
 }: ButtonProps) {
-  const variantClass =
-    variantStyle === "primary" ? styles.primary : styles.secondary;
+  // const variantClass =
+  //   variantStyle === "primary" ? styles.primary : styles.secondary;
+
+  let variantClass;
+  switch (variantStyle) {
+    case "primary":
+      variantClass = styles.primary;
+      break;
+
+    case "secondary":
+      variantClass = styles.secondary;
+      break;
+
+    case "edit":
+      variantClass = styles.edit;
+      break;
+
+    case "delete":
+      variantClass = styles.delete;
+      break;
+
+    default:
+      variantClass = styles.primary;
+      break;
+  }
 
   return (
     <button

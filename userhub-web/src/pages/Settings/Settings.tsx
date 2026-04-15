@@ -80,7 +80,7 @@ export function Settings() {
         <div className={styles.actions}>
           <Button
             variantType="button"
-            variantStyle="secundary"
+            variantStyle="secondary"
             label="Cancel"
           ></Button>
 
