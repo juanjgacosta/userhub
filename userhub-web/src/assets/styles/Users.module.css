@@ -40,7 +40,7 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid var(--zinc-200);
+
   border-radius: 0.75rem;
   overflow: hidden;
 }
@@ -55,11 +55,21 @@
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--zinc-600);
+
+  border-bottom: 1px solid var(--zinc-200);
 }
 
 .table td {
   padding: 0.75rem;
-  border: 1px solid var(--zinc-200);
+  border-bottom: 1px solid var(--zinc-200);
+}
+
+.table tbody tr:first-child td {
+  border-top: none;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .table tbody tr:hover {
