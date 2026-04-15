@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       {
         path: "/users",
         element: <Users />,
-        handle: { title: "Users" },
+        handle: { title: "User Management" },
       },
       {
         path: "/settings",
