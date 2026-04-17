@@ -15,7 +15,7 @@ export async function createAdminUser() {
   const adminUser = await usersRepository.createUser({
     name: 'admin',
     email,
-    company: '',
+    company: 'MuGoL',
     password: 'admin',
     avatar: '',
     isAdmin: true,

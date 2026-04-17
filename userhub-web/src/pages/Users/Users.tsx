@@ -44,29 +44,43 @@ export function Users() {
             </tr>
           </thead>
           <tbody>
-            {data?.map((user) => (
-              <tr key={user.id}>
-                <td>{user.avatar || "-"}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.company}</td>
-                <td className={styles.actions}>
-                  <Button
-                    variantType="button"
-                    variantStyle="edit"
-                    label="Edit"
-                    form="settings-form"
-                  ></Button>
-
-                  <Button
-                    variantType="button"
-                    variantStyle="delete"
-                    label="Delete"
-                    form="settings-form"
-                  ></Button>
-                </td>
+            {isLoading ? (
+              <tr>
+                <td colSpan={5}>Loading users...</td>
               </tr>
-            ))}
+            ) : error ? (
+              <tr>
+                <td colSpan={5}>Error loading users</td>
+              </tr>
+            ) : data?.length === 0 ? (
+              <tr>
+                <td colSpan={5}>No users found</td>
+              </tr>
+            ) : (
+              data?.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.avatar || "-"}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.company}</td>
+                  <td className={styles.actions}>
+                    <Button
+                      variantType="button"
+                      variantStyle="edit"
+                      label="Edit"
+                      form="settings-form"
+                    ></Button>
+
+                    <Button
+                      variantType="button"
+                      variantStyle="delete"
+                      label="Delete"
+                      form="settings-form"
+                    ></Button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </section>
