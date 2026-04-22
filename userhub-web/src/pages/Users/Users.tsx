@@ -1,9 +1,10 @@
 import { Plus, Search } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { getUsers } from "../../services/Users";
+import { getUsers, createUser } from "../../services/Users";
 
 import styles from "../../assets/styles/Users.module.css";
 import { Button, ButtonPrefix } from "../../components/Button";
+import { CreateUser } from "../../components/CreateUser";
 
 export function Users() {
   const { data, isLoading, error } = useQuery({
@@ -20,7 +21,6 @@ export function Users() {
           variantType="submit"
           variantStyle="primary"
           label="Create User"
-          form="settings-form"
         >
           <ButtonPrefix icon={Plus} />
         </Button>
@@ -84,6 +84,8 @@ export function Users() {
           </tbody>
         </table>
       </section>
+
+      <CreateUser />
     </section>
   );
 }

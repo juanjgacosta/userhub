@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  /* width: 620px; */
+  width: 38.75rem;
+  border: 1px solid var(--zinc-200);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  gap: 1.5rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--zinc-500);
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+}
+
+.avatarInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.userAvatar {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--zinc-600);
+}
+
+.userAvatarInfo {
+  font-size: 0.75rem;
+  color: var(--zinc-500);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card {
+  margin-top: 0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.input {
+  padding: 0.5rem;
+  border: 1px solid var(--zinc-200);
+  border-radius: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
