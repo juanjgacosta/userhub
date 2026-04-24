@@ -3,7 +3,7 @@ import { Button } from "./Button";
 
 export function CreateUser() {
   return (
-    <section className={styles.container}>
+    <article className={styles.container}>
       <header className={styles.header}>
         <h2 className={styles.title}>Create / Edit User</h2>
         <p className={styles.subtitle}>
@@ -11,60 +11,64 @@ export function CreateUser() {
         </p>
       </header>
 
-      <div className={styles.avatar}>
+      <section className={styles.avatarSection}>
         <img
+          className={styles.avatarImage}
           src="https://github.com/juanjgacosta.png"
           alt="Avatar's profile picture"
         />
         <div className={styles.avatarInfo}>
-          <span className={styles.userAvatar}>Avatar</span>
-          <span className={styles.userAvatarInfo}>
-            Upload JPG/PNG up to 2MB
-          </span>
+          <span className={styles.label}>Avatar</span>
+          <span className={styles.helperText}>Upload JPG/PNG up to 2MB</span>
         </div>
-      </div>
+      </section>
 
       <form className={styles.form} id="user-form">
-        <div className={styles.card}>
+        <section className={styles.formSection}>
           <div className={styles.grid}>
             <label className={styles.field}>
-              <span>Name</span>
-              <input className={styles.input} type="text" value="Jane Doe" />
-            </label>
-
-            <label className={styles.field}>
-              <span>Email</span>
-              <input
-                className={styles.input}
-                type="email"
-                value="jane@company.com"
-              />
-            </label>
-          </div>
-        </div>
-
-        <div className={styles.card}>
-          <div className={styles.grid}>
-            <label className={styles.field}>
-              <span>Company</span>
+              <span className={styles.label}>Name</span>
               <input
                 className={styles.input}
                 type="text"
-                value="UserHub Inc."
+                defaultValue="Jane Doe"
               />
             </label>
 
             <label className={styles.field}>
-              <span>Password</span>
+              <span className={styles.label}>Email</span>
               <input
                 className={styles.input}
-                type="password"
-                value="••••••••"
+                type="email"
+                defaultValue="jane@company.com"
               />
             </label>
           </div>
-        </div>
-        <div className={styles.actions}>
+        </section>
+
+        <section className={styles.formSection}>
+          <div className={styles.grid}>
+            <label className={styles.field}>
+              <span className={styles.label}>Company</span>
+              <input
+                className={styles.input}
+                type="text"
+                defaultValue="UserHub Inc."
+              />
+            </label>
+
+            <label className={styles.field}>
+              <span className={styles.label}>Password</span>
+              <input
+                className={styles.input}
+                type="password"
+                defaultValue="••••••••"
+              />
+            </label>
+          </div>
+        </section>
+
+        <footer className={styles.actions}>
           <Button
             variantType="button"
             variantStyle="secondary"
@@ -76,8 +80,8 @@ export function CreateUser() {
             variantStyle="primary"
             label="Save User"
           ></Button>
-        </div>
+        </footer>
       </form>
-    </section>
+    </article>
   );
 }
