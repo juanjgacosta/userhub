@@ -97,7 +97,6 @@ export function CreateUser() {
                 name: "test",
                 email: "email",
                 password: "mudar123",
-                company: "",
               })
             }
           ></Button>
