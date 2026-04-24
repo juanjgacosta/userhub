@@ -1,7 +1,20 @@
 import styles from "../assets/styles/CreateUser.module.css";
 import { Button } from "./Button";
 
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { createUser } from "../services/Users";
+
 export function CreateUser() {
+  const queryClient = useQueryClient();
+
+  const createUseMutation = useMutation({
+    mutationFn: createUser,
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+  });
+
   return (
     <article className={styles.container}>
       <header className={styles.header}>
@@ -78,7 +91,15 @@ export function CreateUser() {
           <Button
             variantType="submit"
             variantStyle="primary"
-            label="Save User"
+            label={createUseMutation.isPending ? "Saving..." : "Save User"}
+            onClick={() =>
+              createUseMutation.mutate({
+                name: "test",
+                email: "email",
+                password: "mudar123",
+                company: "",
+              })
+            }
           ></Button>
         </footer>
       </form>

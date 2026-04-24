@@ -1,6 +1,6 @@
 import { Plus, Search } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { getUsers, createUser } from "../../services/Users";
+import { getUsers } from "../../services/Users";
 
 import styles from "../../assets/styles/Users.module.css";
 import { Button, ButtonPrefix } from "../../components/Button";
@@ -17,11 +17,7 @@ export function Users() {
       <header className={styles.header}>
         <h1 className={styles.title}>Users</h1>
 
-        <Button
-          variantType="submit"
-          variantStyle="primary"
-          label="Create User"
-        >
+        <Button variantType="submit" variantStyle="primary" label="Create User">
           <ButtonPrefix icon={Plus} />
         </Button>
       </header>

@@ -29,7 +29,8 @@ export async function createUser(data: CreateUserDTO) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      // 'Bearer': ''
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTc3NzAwMzI4NiwiZXhwIjoxNzc3MDA1MDg2LCJzdWIiOiI3ZDk2MjEwYi00ODIxLTRiNTEtOTQ2My00ZmFlNTAyYTU0MWMifQ.2RKf9h02zQCJc7MM6N2z6ChaBYbXq0s-q3fXonXbWEg',
     },
     body: JSON.stringify(data),
   })
