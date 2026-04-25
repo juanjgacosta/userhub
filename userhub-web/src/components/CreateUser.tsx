@@ -15,6 +15,20 @@ export function CreateUser() {
     },
   });
 
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+    };
+
+    createUseMutation.mutate(data);
+  }
+
   return (
     <article className={styles.container}>
       <header className={styles.header}>
@@ -36,7 +50,7 @@ export function CreateUser() {
         </div>
       </section>
 
-      <form className={styles.form} id="user-form">
+      <form className={styles.form} id="user-form" onSubmit={handleSubmit}>
         <section className={styles.formSection}>
           <div className={styles.grid}>
             <label className={styles.field}>
@@ -44,6 +58,7 @@ export function CreateUser() {
               <input
                 className={styles.input}
                 type="text"
+                name="name"
                 defaultValue="Jane Doe"
               />
             </label>
@@ -53,6 +68,7 @@ export function CreateUser() {
               <input
                 className={styles.input}
                 type="email"
+                name="email"
                 defaultValue="jane@company.com"
               />
             </label>
@@ -66,6 +82,7 @@ export function CreateUser() {
               <input
                 className={styles.input}
                 type="text"
+                name="company"
                 defaultValue="UserHub Inc."
               />
             </label>
@@ -75,6 +92,7 @@ export function CreateUser() {
               <input
                 className={styles.input}
                 type="password"
+                name="password"
                 defaultValue="••••••••"
               />
             </label>
@@ -92,13 +110,6 @@ export function CreateUser() {
             variantType="submit"
             variantStyle="primary"
             label={createUseMutation.isPending ? "Saving..." : "Save User"}
-            onClick={() =>
-              createUseMutation.mutate({
-                name: "test",
-                email: "email",
-                password: "mudar123",
-              })
-            }
           ></Button>
         </footer>
       </form>
