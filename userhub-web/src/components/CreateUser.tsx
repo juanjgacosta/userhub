@@ -1,6 +1,7 @@
 import styles from "../assets/styles/CreateUser.module.css";
 import { Button } from "./Button";
 
+import { useRef } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { z } from "zod";
 
@@ -8,6 +9,8 @@ import { createUser } from "../services/Users";
 import { useState } from "react";
 
 export function CreateUser() {
+  const formRef = useRef<HTMLFormElement>(null);
+
   const queryClient = useQueryClient();
 
   const createUseMutation = useMutation({
@@ -33,10 +36,10 @@ export function CreateUser() {
     const formData = new FormData(event.currentTarget);
 
     const data = {
-      name: String(formData.get("name") || ""),
-      email: String(formData.get("email") || ""),
-      company: String(formData.get("company") || ""),
-      password: String(formData.get("password") || ""),
+      name: (formData.get("name") as string) || "",
+      email: (formData.get("email") as string) || "",
+      company: (formData.get("company") as string) || "",
+      password: (formData.get("password") as string) || "",
     };
 
     const result = createUserSchema.safeParse(data);
@@ -47,6 +50,7 @@ export function CreateUser() {
       setErrors({
         name: formattedErrors.name?.[0] ?? "",
         email: formattedErrors.email?.[0] ?? "",
+        company: formattedErrors.company?.[0] ?? "",
         password: formattedErrors.password?.[0] ?? "",
       });
       // Print errors on browser console.
@@ -59,6 +63,12 @@ export function CreateUser() {
 
     // Proceed with mutation
     createUseMutation.mutate(result.data);
+  }
+
+  function handleCancel() {
+    formRef.current?.reset();
+    setErrors({});
+    createUseMutation.reset();
   }
 
   return (
@@ -82,7 +92,12 @@ export function CreateUser() {
         </div>
       </section>
 
-      <form className={styles.form} id="user-form" onSubmit={handleSubmit}>
+      <form
+        className={styles.form}
+        ref={formRef}
+        id="user-form"
+        onSubmit={handleSubmit}
+      >
         <section className={styles.formSection}>
           <div className={styles.grid}>
             <label className={styles.field}>
@@ -152,6 +167,7 @@ export function CreateUser() {
             variantType="button"
             variantStyle="secondary"
             label="Cancel"
+            onClick={handleCancel}
           ></Button>
 
           <Button
