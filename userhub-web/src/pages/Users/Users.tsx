@@ -1,12 +1,15 @@
 import { Plus, Search } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getUsers } from "../../services/Users";
+import { useState } from "react";
 
 import styles from "../../assets/styles/Users.module.css";
 import { Button, ButtonPrefix } from "../../components/Button";
 import { CreateUser } from "../../components/CreateUser";
 
 export function Users() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { data, isLoading, error } = useQuery({
     queryKey: ["users"],
     queryFn: getUsers,
@@ -17,7 +20,7 @@ export function Users() {
       <header className={styles.header}>
         <h1 className={styles.title}>Users</h1>
 
-        <Button variantType="submit" variantStyle="primary" label="Create User">
+        <Button variantType="submit" variantStyle="primary" label="Create User" onClick={() => setIsModalOpen(true)}>
           <ButtonPrefix icon={Plus} />
         </Button>
       </header>
@@ -81,7 +84,8 @@ export function Users() {
         </table>
       </section>
 
-      <CreateUser />
+      {/* <CreateUser /> */}
+      {isModalOpen && ( <CreateUser onClose={() => setIsModalOpen(false)} />)}
     </section>
   );
 }

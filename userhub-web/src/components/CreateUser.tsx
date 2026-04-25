@@ -8,7 +8,11 @@ import { z } from "zod";
 import { createUser } from "../services/Users";
 import { useState } from "react";
 
-export function CreateUser() {
+interface CreateUserProps {
+  onClose: () => void;
+}
+
+export function CreateUser({ onClose }: CreateUserProps) {
   const formRef = useRef<HTMLFormElement>(null);
 
   const queryClient = useQueryClient();
@@ -18,6 +22,10 @@ export function CreateUser() {
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["users"] });
+
+      formRef.current?.reset();
+      setErrors({});
+      onClose();
     },
   });
 
@@ -69,114 +77,121 @@ export function CreateUser() {
     formRef.current?.reset();
     setErrors({});
     createUseMutation.reset();
+    onClose();
   }
 
   return (
-    <article className={styles.container}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>Create / Edit User</h2>
-        <p className={styles.subtitle}>
-          Manage user profile and access details.
-        </p>
-      </header>
+    <div className={styles.overlay} onClick={onClose}>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <article className={styles.container}>
+          <header className={styles.header}>
+            <h2 className={styles.title}>Create / Edit User</h2>
+            <p className={styles.subtitle}>
+              Manage user profile and access details.
+            </p>
+          </header>
 
-      <section className={styles.avatarSection}>
-        <img
-          className={styles.avatarImage}
-          src="https://github.com/juanjgacosta.png"
-          alt="Avatar's profile picture"
-        />
-        <div className={styles.avatarInfo}>
-          <span className={styles.label}>Avatar</span>
-          <span className={styles.helperText}>Upload JPG/PNG up to 2MB</span>
-        </div>
-      </section>
+          <section className={styles.avatarSection}>
+            <img
+              className={styles.avatarImage}
+              src="https://github.com/juanjgacosta.png"
+              alt="Avatar's profile picture"
+            />
+            <div className={styles.avatarInfo}>
+              <span className={styles.label}>Avatar</span>
+              <span className={styles.helperText}>
+                Upload JPG/PNG up to 2MB
+              </span>
+            </div>
+          </section>
 
-      <form
-        className={styles.form}
-        ref={formRef}
-        id="user-form"
-        onSubmit={handleSubmit}
-      >
-        <section className={styles.formSection}>
-          <div className={styles.grid}>
-            <label className={styles.field}>
-              <span className={styles.label}>Name</span>
-              <input
-                className={styles.input}
-                type="text"
-                name="name"
-                placeholder="Enter name"
-                // defaultValue="Jane Doe"
-              />
-              {errors.name && (
-                <span className={styles.inputError}>{errors.name}</span>
-              )}
-            </label>
+          <form
+            className={styles.form}
+            ref={formRef}
+            id="user-form"
+            onSubmit={handleSubmit}
+          >
+            <section className={styles.formSection}>
+              <div className={styles.grid}>
+                <label className={styles.field}>
+                  <span className={styles.label}>Name</span>
+                  <input
+                    className={styles.input}
+                    type="text"
+                    name="name"
+                    placeholder="Enter name"
+                    // defaultValue="Jane Doe"
+                  />
+                  {errors.name && (
+                    <span className={styles.inputError}>{errors.name}</span>
+                  )}
+                </label>
 
-            <label className={styles.field}>
-              <span className={styles.label}>E-mail</span>
-              <input
-                className={styles.input}
-                type="email"
-                name="email"
-                placeholder="Enter E-mail"
-                // defaultValue="jane@company.com"
-              />
-              {errors.email && (
-                <span className={styles.inputError}>{errors.email}</span>
-              )}
-            </label>
-          </div>
-        </section>
+                <label className={styles.field}>
+                  <span className={styles.label}>E-mail</span>
+                  <input
+                    className={styles.input}
+                    type="email"
+                    name="email"
+                    placeholder="Enter E-mail"
+                    // defaultValue="jane@company.com"
+                  />
+                  {errors.email && (
+                    <span className={styles.inputError}>{errors.email}</span>
+                  )}
+                </label>
+              </div>
+            </section>
 
-        <section className={styles.formSection}>
-          <div className={styles.grid}>
-            <label className={styles.field}>
-              <span className={styles.label}>Company</span>
-              <input
-                className={styles.input}
-                type="text"
-                name="company"
-                placeholder="Enter Company"
-                // defaultValue="UserHub Inc."
-              />
-              {errors.company && (
-                <span className={styles.inputError}>{errors.company}</span>
-              )}
-            </label>
+            <section className={styles.formSection}>
+              <div className={styles.grid}>
+                <label className={styles.field}>
+                  <span className={styles.label}>Company</span>
+                  <input
+                    className={styles.input}
+                    type="text"
+                    name="company"
+                    placeholder="Enter Company"
+                    // defaultValue="UserHub Inc."
+                  />
+                  {errors.company && (
+                    <span className={styles.inputError}>{errors.company}</span>
+                  )}
+                </label>
 
-            <label className={styles.field}>
-              <span className={styles.label}>Password</span>
-              <input
-                className={styles.input}
-                type="password"
-                name="password"
-                placeholder="••••••••"
-                // defaultValue="••••••••"
-              />
-              {errors.password && (
-                <span className={styles.inputError}>{errors.password}</span>
-              )}
-            </label>
-          </div>
-        </section>
+                <label className={styles.field}>
+                  <span className={styles.label}>Password</span>
+                  <input
+                    className={styles.input}
+                    type="password"
+                    name="password"
+                    placeholder="••••••••"
+                    // defaultValue="••••••••"
+                  />
+                  {errors.password && (
+                    <span className={styles.inputError}>{errors.password}</span>
+                  )}
+                </label>
+              </div>
+            </section>
 
-        <footer className={styles.actions}>
-          <Button
-            variantType="button"
-            variantStyle="secondary"
-            label="Cancel"
-            onClick={handleCancel}
-          ></Button>
+            <footer className={styles.actions}>
+              <Button
+                variantType="button"
+                variantStyle="secondary"
+                label="Cancel"
+                onClick={handleCancel}
+              ></Button>
 
-          <Button
-            variantType="submit"
-            variantStyle="primary"
-            label={createUseMutation.isPending ? "Saving..." : "Save User"}
-          ></Button>
-        </footer>
-      </form>
-    </article>
+              <Button
+                variantType="submit"
+                variantStyle="primary"
+                label={createUseMutation.isPending ? "Saving..." : "Save User"}
+              ></Button>
+            </footer>
+          </form>
+        </article>
+      </div>
+    </div>
   );
 }
