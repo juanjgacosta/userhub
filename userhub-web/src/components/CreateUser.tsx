@@ -2,7 +2,10 @@ import styles from "../assets/styles/CreateUser.module.css";
 import { Button } from "./Button";
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { z } from "zod";
+
 import { createUser } from "../services/Users";
+import { useState } from "react";
 
 export function CreateUser() {
   const queryClient = useQueryClient();
@@ -15,18 +18,47 @@ export function CreateUser() {
     },
   });
 
+  const createUserSchema = z.object({
+    name: z.string().min(3, "Name is required - Min 3 characters"),
+    email: z.string().email("Invalid e-mail"),
+    company: z.string().optional(),
+    password: z.string().min(6, "Min 6 characters"),
+  });
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
 
     const data = {
-      name: formData.get("name") as string,
-      email: formData.get("email") as string,
-      password: formData.get("password") as string,
+      name: String(formData.get("name") || ""),
+      email: String(formData.get("email") || ""),
+      company: String(formData.get("company") || ""),
+      password: String(formData.get("password") || ""),
     };
 
-    createUseMutation.mutate(data);
+    const result = createUserSchema.safeParse(data);
+
+    if (!result.success) {
+      const formattedErrors = result.error.flatten().fieldErrors;
+
+      setErrors({
+        name: formattedErrors.name?.[0] ?? "",
+        email: formattedErrors.email?.[0] ?? "",
+        password: formattedErrors.password?.[0] ?? "",
+      });
+      // Print errors on browser console.
+      // console.log(result.error.format());
+      return;
+    }
+
+    // Clear errors on successful validation
+    setErrors({});
+
+    // Proceed with mutation
+    createUseMutation.mutate(result.data);
   }
 
   return (
@@ -59,18 +91,26 @@ export function CreateUser() {
                 className={styles.input}
                 type="text"
                 name="name"
-                defaultValue="Jane Doe"
+                placeholder="Enter name"
+                // defaultValue="Jane Doe"
               />
+              {errors.name && (
+                <span className={styles.inputError}>{errors.name}</span>
+              )}
             </label>
 
             <label className={styles.field}>
-              <span className={styles.label}>Email</span>
+              <span className={styles.label}>E-mail</span>
               <input
                 className={styles.input}
                 type="email"
                 name="email"
-                defaultValue="jane@company.com"
+                placeholder="Enter E-mail"
+                // defaultValue="jane@company.com"
               />
+              {errors.email && (
+                <span className={styles.inputError}>{errors.email}</span>
+              )}
             </label>
           </div>
         </section>
@@ -83,8 +123,12 @@ export function CreateUser() {
                 className={styles.input}
                 type="text"
                 name="company"
-                defaultValue="UserHub Inc."
+                placeholder="Enter Company"
+                // defaultValue="UserHub Inc."
               />
+              {errors.company && (
+                <span className={styles.inputError}>{errors.company}</span>
+              )}
             </label>
 
             <label className={styles.field}>
@@ -93,8 +137,12 @@ export function CreateUser() {
                 className={styles.input}
                 type="password"
                 name="password"
-                defaultValue="••••••••"
+                placeholder="••••••••"
+                // defaultValue="••••••••"
               />
+              {errors.password && (
+                <span className={styles.inputError}>{errors.password}</span>
+              )}
             </label>
           </div>
         </section>

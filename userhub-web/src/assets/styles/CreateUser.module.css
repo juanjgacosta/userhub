@@ -113,6 +113,11 @@
   box-shadow: 0 0 0 1px var(--blue-500);
 }
 
+.inputError {
+  font-size: 0.75rem;
+  color: var(--red-600);
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;
