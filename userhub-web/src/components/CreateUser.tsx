@@ -1,12 +1,11 @@
-import styles from "../assets/styles/CreateUser.module.css";
-import { Button } from "./Button";
-
-import { useRef } from "react";
+import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { z } from "zod";
 
+import styles from "../assets/styles/CreateUser.module.css";
+import { Button } from "./Button";
 import { createUser, updateUser, type User } from "../services/Users";
-import { useState } from "react";
+import { useRef } from "react";
 
 interface CreateUserProps {
   onClose: () => void;
@@ -38,13 +37,6 @@ export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
     //   mode === "create"
     //     ? z.string().min(6, "Min 6 characters")
     //     : z.string().optional(),
-  });
-
-  const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    company: "",
-    password: "",
   });
 
   function handleSuccess() {
