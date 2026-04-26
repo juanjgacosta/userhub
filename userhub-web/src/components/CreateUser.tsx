@@ -5,36 +5,55 @@ import { useRef } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { z } from "zod";
 
-import { createUser } from "../services/Users";
+import { createUser, updateUser, type User } from "../services/Users";
 import { useState } from "react";
 
 interface CreateUserProps {
   onClose: () => void;
+  mode: "create" | "edit";
+  selectedUser: User | null;
 }
 
-export function CreateUser({ onClose }: CreateUserProps) {
+export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
   const formRef = useRef<HTMLFormElement>(null);
 
   const queryClient = useQueryClient();
 
-  const createUseMutation = useMutation({
+  const createUserMutation = useMutation({
     mutationFn: createUser,
-
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["users"] });
-
-      formRef.current?.reset();
-      setErrors({});
-      onClose();
-    },
+    onSuccess: handleSuccess,
   });
 
-  const createUserSchema = z.object({
+  const updateUserMutation = useMutation({
+    mutationFn: updateUser,
+    onSuccess: handleSuccess,
+  });
+
+  const schema = z.object({
     name: z.string().min(3, "Name is required - Min 3 characters"),
     email: z.string().email("Invalid e-mail"),
     company: z.string().optional(),
     password: z.string().min(6, "Min 6 characters"),
+    // password:
+    //   mode === "create"
+    //     ? z.string().min(6, "Min 6 characters")
+    //     : z.string().optional(),
   });
+
+  const [formValues, setFormValues] = useState({
+    name: "",
+    email: "",
+    company: "",
+    password: "",
+  });
+
+  function handleSuccess() {
+    queryClient.invalidateQueries({ queryKey: ["users"] });
+
+    formRef.current?.reset();
+    setErrors({});
+    onClose();
+  }
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -50,7 +69,7 @@ export function CreateUser({ onClose }: CreateUserProps) {
       password: (formData.get("password") as string) || "",
     };
 
-    const result = createUserSchema.safeParse(data);
+    const result = schema.safeParse(data);
 
     if (!result.success) {
       const formattedErrors = result.error.flatten().fieldErrors;
@@ -70,20 +89,29 @@ export function CreateUser({ onClose }: CreateUserProps) {
     setErrors({});
 
     // Proceed with mutation
-    createUseMutation.mutate(result.data);
+    if (mode === "create") {
+      createUserMutation.mutate(result.data);
+    } else if (selectedUser) {
+      updateUserMutation.mutate({
+        id: selectedUser.id,
+        name: result.data.name,
+        email: result.data.email,
+        company: result.data.company,
+      });
+    }
   }
 
   function handleCancel() {
     formRef.current?.reset();
     setErrors({});
-    createUseMutation.reset();
+    createUserMutation.reset();
     onClose();
   }
 
   return (
     <article className={styles.container}>
       <header className={styles.header}>
-        <h2 className={styles.title}>Create / Edit User</h2>
+        <h2 className={styles.title}>{mode === "create" ? "Create User" : "Edit User"}</h2>
         <p className={styles.subtitle}>
           Manage user profile and access details.
         </p>
@@ -182,7 +210,7 @@ export function CreateUser({ onClose }: CreateUserProps) {
           <Button
             variantType="submit"
             variantStyle="primary"
-            label={createUseMutation.isPending ? "Saving..." : "Save User"}
+            label={createUserMutation.isPending ? "Saving..." : "Save User"}
           ></Button>
         </footer>
       </form>

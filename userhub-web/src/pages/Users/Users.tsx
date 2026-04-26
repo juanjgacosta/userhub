@@ -1,6 +1,6 @@
 import { Plus, Search } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { getUsers } from "../../services/Users";
+import { getUsers, type User } from "../../services/Users";
 import { useState } from "react";
 
 import styles from "../../assets/styles/Users.module.css";
@@ -10,11 +10,30 @@ import { CreateUser } from "../../components/CreateUser";
 
 export function Users() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState<"create" | "edit">("create");
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["users"],
     queryFn: getUsers,
   });
+
+  function openCreateModal() {
+    setModalMode("create");
+    setSelectedUser(null);
+    setIsModalOpen(true);
+  }
+
+  function openEditModal(user: User) {
+    setModalMode("edit");
+    setSelectedUser(user);
+    setIsModalOpen(true);
+  }
+
+  function closeModal() {
+    setIsModalOpen(false);
+    setSelectedUser(null);
+  }
 
   return (
     <section className={styles.container}>
@@ -25,7 +44,7 @@ export function Users() {
           variantType="submit"
           variantStyle="primary"
           label="Create User"
-          onClick={() => setIsModalOpen(true)}
+          onClick={openCreateModal}
         >
           <ButtonPrefix icon={Plus} />
         </Button>
@@ -74,6 +93,7 @@ export function Users() {
                       variantStyle="edit"
                       label="Edit"
                       form="settings-form"
+                      onClick={() => openEditModal(user)}
                     ></Button>
 
                     <Button
@@ -90,9 +110,13 @@ export function Users() {
         </table>
       </section>
 
-       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <CreateUser onClose={() => setIsModalOpen(false)} />
-       </Modal>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <CreateUser
+          onClose={closeModal}
+          mode={modalMode}
+          selectedUser={selectedUser}
+        />
+      </Modal>
     </section>
   );
 }
