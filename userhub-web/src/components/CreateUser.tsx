@@ -103,7 +103,9 @@ export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
   return (
     <article className={styles.container}>
       <header className={styles.header}>
-        <h2 className={styles.title}>{mode === "create" ? "Create User" : "Edit User"}</h2>
+        <h2 className={styles.title}>
+          {mode === "create" ? "Create User" : "Edit User"}
+        </h2>
         <p className={styles.subtitle}>
           Manage user profile and access details.
         </p>
@@ -136,7 +138,7 @@ export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
                 type="text"
                 name="name"
                 placeholder="Enter name"
-                // defaultValue="Jane Doe"
+                defaultValue={selectedUser?.name ?? ""}
               />
               {errors.name && (
                 <span className={styles.inputError}>{errors.name}</span>
@@ -150,7 +152,7 @@ export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
                 type="email"
                 name="email"
                 placeholder="Enter E-mail"
-                // defaultValue="jane@company.com"
+                defaultValue={selectedUser?.email ?? ""}
               />
               {errors.email && (
                 <span className={styles.inputError}>{errors.email}</span>
@@ -168,7 +170,7 @@ export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
                 type="text"
                 name="company"
                 placeholder="Enter Company"
-                // defaultValue="UserHub Inc."
+                defaultValue={selectedUser?.company ?? ""}
               />
               {errors.company && (
                 <span className={styles.inputError}>{errors.company}</span>
@@ -182,7 +184,6 @@ export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
                 type="password"
                 name="password"
                 placeholder="••••••••"
-                // defaultValue="••••••••"
               />
               {errors.password && (
                 <span className={styles.inputError}>{errors.password}</span>
