@@ -1,9 +1,20 @@
 import { Plus, Search } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { getUsers } from "../../services/Users";
+import { useState } from "react";
 
 import styles from "../../assets/styles/Users.module.css";
 import { Button, ButtonPrefix } from "../../components/Button";
+import { CreateUser } from "../../components/CreateUser";
 
 export function Users() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["users"],
+    queryFn: getUsers,
+  });
+
   return (
     <section className={styles.container}>
       <header className={styles.header}>
@@ -13,7 +24,7 @@ export function Users() {
           variantType="submit"
           variantStyle="primary"
           label="Create User"
-          form="settings-form"
+          onClick={() => setIsModalOpen(true)}
         >
           <ButtonPrefix icon={Plus} />
         </Button>
@@ -37,72 +48,49 @@ export function Users() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Avatar</td>
-              <td>Alice Johnson</td>
-              <td>alice@userhub.io</td>
-              <td>Acme Inc</td>
-              <td className={styles.actions}>
-                <Button
-                  variantType="button"
-                  variantStyle="edit"
-                  label="Edit"
-                  form="settings-form"
-                ></Button>
+            {isLoading ? (
+              <tr>
+                <td colSpan={5}>Loading users...</td>
+              </tr>
+            ) : error ? (
+              <tr>
+                <td colSpan={5}>Error loading users</td>
+              </tr>
+            ) : data?.length === 0 ? (
+              <tr>
+                <td colSpan={5}>No users found</td>
+              </tr>
+            ) : (
+              data?.map((user) => (
+                <tr key={user.id}>
+                  <td>{user.avatar || "-"}</td>
+                  <td>{user.name}</td>
+                  <td>{user.email}</td>
+                  <td>{user.company}</td>
+                  <td className={styles.actions}>
+                    <Button
+                      variantType="button"
+                      variantStyle="edit"
+                      label="Edit"
+                      form="settings-form"
+                    ></Button>
 
-                <Button
-                  variantType="button"
-                  variantStyle="delete"
-                  label="Delete"
-                  form="settings-form"
-                ></Button>
-              </td>
-            </tr>
-            <tr>
-              <td>Avatar</td>
-              <td>Brian Lee</td>
-              <td>brian@userhub.io</td>
-              <td>Nova Labs</td>
-              <td className={styles.actions}>
-                <Button
-                  variantType="button"
-                  variantStyle="edit"
-                  label="Edit"
-                  form="settings-form"
-                ></Button>
-
-                <Button
-                  variantType="button"
-                  variantStyle="delete"
-                  label="Delete"
-                  form="settings-form"
-                ></Button>
-              </td>
-            </tr>
-            <tr>
-              <td>Avatar</td>
-              <td>Carla Gomez</td>
-              <td>carla@userhub.io</td>
-              <td>Orbit Co</td>
-              <td className={styles.actions}>
-                <Button
-                  variantType="button"
-                  variantStyle="edit"
-                  label="Edit"
-                  form="settings-form"
-                ></Button>
-
-                <Button
-                  variantType="button"
-                  variantStyle="delete"
-                  label="Delete"
-                  form="settings-form"
-                ></Button>
-              </td>
-            </tr>
+                    <Button
+                      variantType="button"
+                      variantStyle="delete"
+                      label="Delete"
+                      form="settings-form"
+                    ></Button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </section>
+
+      {/* <CreateUser /> */}
+      {isModalOpen && <CreateUser onClose={() => setIsModalOpen(false)} />}
     </section>
   );
 }

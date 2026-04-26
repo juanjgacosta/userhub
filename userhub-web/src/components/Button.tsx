@@ -12,6 +12,7 @@ interface ButtonProps {
   variantStyle: string;
   children?: ReactNode;
   form?: string;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export function ButtonPrefix({ icon: Icon }: ButtonPrefixProps) {
@@ -24,6 +25,7 @@ export function Button({
   variantStyle = "primary",
   children,
   form,
+  onClick,
 }: ButtonProps) {
   // const variantClass =
   //   variantStyle === "primary" ? styles.primary : styles.secondary;
@@ -56,6 +58,7 @@ export function Button({
       type={variantType}
       className={`${styles.button} ${variantClass}`}
       form={form}
+      onClick={onClick}
     >
       {children}
       <span>{label}</span>
