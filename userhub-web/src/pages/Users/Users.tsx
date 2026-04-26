@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import styles from "../../assets/styles/Users.module.css";
 import { Button, ButtonPrefix } from "../../components/Button";
+import { Modal } from "../../components/Modal";
 import { CreateUser } from "../../components/CreateUser";
 
 export function Users() {
@@ -89,8 +90,9 @@ export function Users() {
         </table>
       </section>
 
-      {/* <CreateUser /> */}
-      {isModalOpen && <CreateUser onClose={() => setIsModalOpen(false)} />}
+       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <CreateUser onClose={() => setIsModalOpen(false)} />
+       </Modal>
     </section>
   );
 }
