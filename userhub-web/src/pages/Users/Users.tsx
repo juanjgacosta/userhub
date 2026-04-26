@@ -20,7 +20,12 @@ export function Users() {
       <header className={styles.header}>
         <h1 className={styles.title}>Users</h1>
 
-        <Button variantType="submit" variantStyle="primary" label="Create User" onClick={() => setIsModalOpen(true)}>
+        <Button
+          variantType="submit"
+          variantStyle="primary"
+          label="Create User"
+          onClick={() => setIsModalOpen(true)}
+        >
           <ButtonPrefix icon={Plus} />
         </Button>
       </header>
@@ -85,7 +90,7 @@ export function Users() {
       </section>
 
       {/* <CreateUser /> */}
-      {isModalOpen && ( <CreateUser onClose={() => setIsModalOpen(false)} />)}
+      {isModalOpen && <CreateUser onClose={() => setIsModalOpen(false)} />}
     </section>
   );
 }
