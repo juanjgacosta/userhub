@@ -18,6 +18,8 @@ export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
 
   const queryClient = useQueryClient();
 
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
   const createUserMutation = useMutation({
     mutationFn: createUser,
     onSuccess: handleSuccess,
@@ -27,6 +29,9 @@ export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
     mutationFn: updateUser,
     onSuccess: handleSuccess,
   });
+
+  const isPending =
+    createUserMutation.isPending || updateUserMutation.isPending;
 
   const schema = z.object({
     name: z.string().min(3, "Name is required - Min 3 characters"),
@@ -46,8 +51,6 @@ export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
     setErrors({});
     onClose();
   }
-
-  const [errors, setErrors] = useState<Record<string, string>>({});
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -203,7 +206,13 @@ export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
           <Button
             variantType="submit"
             variantStyle="primary"
-            label={createUserMutation.isPending ? "Saving..." : "Save User"}
+            label={
+              isPending
+                ? "Saving..."
+                : mode === "create"
+                  ? "Create User"
+                  : "Update User"
+            }
           ></Button>
         </footer>
       </form>
