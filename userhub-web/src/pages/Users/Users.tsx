@@ -6,7 +6,7 @@ import { useState } from "react";
 import styles from "../../assets/styles/Users.module.css";
 import { Button, ButtonPrefix } from "../../components/Button";
 import { Modal } from "../../components/Modal";
-import { CreateUser } from "../../components/CreateUser";
+import { UserForm } from "../../components/UserForm";
 
 export function Users() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -111,7 +111,7 @@ export function Users() {
       </section>
 
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <CreateUser
+        <UserForm
           onClose={closeModal}
           mode={modalMode}
           selectedUser={selectedUser}

@@ -2,18 +2,18 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { z } from "zod";
 
-import styles from "../assets/styles/CreateUser.module.css";
+import styles from "../assets/styles/UserForm.module.css";
 import { Button } from "./Button";
 import { createUser, updateUser, type User } from "../services/Users";
 import { useRef } from "react";
 
-interface CreateUserProps {
+interface UserFormProps {
   onClose: () => void;
   mode: "create" | "edit";
   selectedUser: User | null;
 }
 
-export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
+export function UserForm({ onClose, mode, selectedUser }: UserFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
 
   const queryClient = useQueryClient();
