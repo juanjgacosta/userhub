@@ -1,5 +1,5 @@
 {
-  "name": "userhub",
+  "name": "@userhub/root",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,19 +13,22 @@
   ],
   "scripts": {
     "dev:api": "npm run dev --workspace=userhub-api",
-    "test:api": "npm run test --workspace=userhub-api",
     "dev:web": "npm run dev --workspace=userhub-web",
-    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\""
+    "test:api": "npm run test --workspace=userhub-api",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\"",
+    "clean": "npm run clean --workspaces",
+    "build": "npm run build --workspaces",
+    "lint": "npm run lint --workspaces"
   },
   "keywords": [],
   "author": "Juan JG Acosta - <juan_jg@hotmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "rimraf": "^6.1.3"
   },
-  "dependencies": {
-    "lucide-react": "^1.7.0",
-    "zod": "^4.3.6"
+  "engines": {
+    "node": ">=24"
   },
-  "packageManager": "pnpm@10.33.2+sha512.a90faf6feeab71ad6c6e57f94e0fe1a12f5dcc22cd754db40ae9593eb6a3e0b6b12e3540218bb37ae083404b1f2ce6db2a4121e979829b4aff94b99f49da1cf8"
+  "packageManager": "npm@11.9.0"
 }
