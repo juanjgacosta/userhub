@@ -1,0 +1,24 @@
+.container {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 16rem minmax(0, 1fr);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+
+  padding: 2rem 2rem 3rem;
+  background: var(--zinc-100);
+}
+
+.content {
+  margin-top: 1rem;
+
+  padding: 1.25rem 1.25rem 2.25rem;
+  border-radius: 1rem;
+
+  background: var(--white);
+  /* box-shadow: 0 0 0 1px var(--zinc-500); */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}

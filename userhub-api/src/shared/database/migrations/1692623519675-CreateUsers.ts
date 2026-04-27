@@ -22,6 +22,7 @@ export class CreateUsers1692623519675 implements MigrationInterface {
           {
             name: 'company',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'created_at',
@@ -34,7 +35,7 @@ export class CreateUsers1692623519675 implements MigrationInterface {
             default: 'now()',
           },
         ],
-      })
+      }),
     )
   }
 

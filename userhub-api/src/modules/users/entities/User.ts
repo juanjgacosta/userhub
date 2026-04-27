@@ -12,8 +12,8 @@ class User {
   @Column('varchar')
   email: string
 
-  @Column('varchar')
-  company: string
+  @Column('varchar', {nullable: true})
+  company?: string
 
   @Column('varchar')
   password: string
