@@ -1,7 +1,7 @@
-<h1 align="center"> CRUD API</h1>
+<h1 align="center"> UserHub API</h1>
 
 <p align="center">
-RESTful CRUD API built with Node.js, TypeScript, TypeORM and SQLite.
+RESTful UserHub API built with Node.js, TypeScript, TypeORM and SQLite.
 </p>
 
 <p align="center">
