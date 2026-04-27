@@ -1,18 +1,19 @@
 {
   "name": "@userhub/api",
   "version": "1.2.0",
-  "main": "app.ts",
+  "main": "dist/src/server.js",
   "repository": "git@github.com:juanjgacosta/userhub.git",
   "author": "<juan_jg@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist && tsc",
     "dev": "tsx watch --inspect=0.0.0.0:9220 src/server.ts",
     "typeorm": "tsx watch ./node_modules/typeorm/cli.js",
     "dev:migration:create": "typeorm migration:create ./src/shared/database/migrations/$npm_config_name",
     "dev:migration:run": "npm run typeorm -- migration:run -d ./src/shared/database/DataSource.ts",
     "dev:migration:revert": "npm run typeorm -- migration:revert -d ./src/shared/database/DataSource.ts",
-    "test": "jest"
+    "test": "jest",
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
