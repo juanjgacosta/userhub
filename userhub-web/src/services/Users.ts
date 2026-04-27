@@ -39,7 +39,7 @@ export async function createUser(data: CreateUserDTO) {
     headers: {
       'Content-Type': 'application/json',
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTc3NzI0MTMwNCwiZXhwIjoxNzc3MjQzMTA0LCJzdWIiOiJhYjU0ZGNiMS01NTJjLTQxZTctYjdmYy0xMDcxMGY1YTQ1ZGIifQ.xSHPL5sN_6uJ9gq3Ostm_CQEIVJ12Ftk-HsxpjF0kZM',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTc3NzI0NzAyNiwiZXhwIjoxNzc3MjQ4ODI2LCJzdWIiOiJhYjU0ZGNiMS01NTJjLTQxZTctYjdmYy0xMDcxMGY1YTQ1ZGIifQ.tSKmpwLdR1iV60SXL018_Yp9JEkFLUEbmeQ2lPohwF4',
     },
     body: JSON.stringify(data),
   })
@@ -57,13 +57,30 @@ export async function updateUser({ id, ...data }: UpdateUserDTO) {
     headers: {
       'Content-Type': 'application/json',
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTc3NzI0MTMwNCwiZXhwIjoxNzc3MjQzMTA0LCJzdWIiOiJhYjU0ZGNiMS01NTJjLTQxZTctYjdmYy0xMDcxMGY1YTQ1ZGIifQ.xSHPL5sN_6uJ9gq3Ostm_CQEIVJ12Ftk-HsxpjF0kZM',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTc3NzI0NzAyNiwiZXhwIjoxNzc3MjQ4ODI2LCJzdWIiOiJhYjU0ZGNiMS01NTJjLTQxZTctYjdmYy0xMDcxMGY1YTQ1ZGIifQ.tSKmpwLdR1iV60SXL018_Yp9JEkFLUEbmeQ2lPohwF4',
     },
     body: JSON.stringify(data),
   })
 
   if (!response.ok) {
     throw new Error('Error updating user')
+  }
+
+  return response.json()
+}
+
+export async function deleteUser(id: string): Promise<void> {
+  const response = await fetch(`http://localhost:4000/users/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization:
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTc3NzI1MDQxMSwiZXhwIjoxNzc3MjUyMjExLCJzdWIiOiJhYjU0ZGNiMS01NTJjLTQxZTctYjdmYy0xMDcxMGY1YTQ1ZGIifQ.ZpBsYdps-KtsUjEUIvRppS2GMh-nptU6YqGg-Wdg-q8',
+    },
+  })
+
+  if (!response.ok) {
+    throw new Error('Error deleting user')
   }
 
   return response.json()

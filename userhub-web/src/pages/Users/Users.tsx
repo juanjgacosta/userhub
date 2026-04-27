@@ -1,7 +1,8 @@
 import { Plus, Search } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { getUsers, type User } from "../../services/Users";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
+
+import { deleteUser, getUsers, type User } from "../../services/Users";
 
 import styles from "../../assets/styles/Users.module.css";
 import { Button, ButtonPrefix } from "../../components/Button";
@@ -17,6 +18,25 @@ export function Users() {
     queryKey: ["users"],
     queryFn: getUsers,
   });
+
+  const queryClient = useQueryClient();
+
+  const deleteUserMutation = useMutation({
+    mutationFn: deleteUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+  });
+
+  function handleDelete(user: User) {
+    const confirmDelete = window.confirm(
+      `Are you sure you want to delete ${user.email}?`,
+    );
+
+    if (!confirmDelete) return;
+
+    deleteUserMutation.mutate(user.id);
+  }
 
   function openCreateModal() {
     setModalMode("create");
@@ -99,8 +119,11 @@ export function Users() {
                     <Button
                       variantType="button"
                       variantStyle="delete"
-                      label="Delete"
+                      label={
+                        deleteUserMutation.isPending ? "Deleting..." : "Delete"
+                      }
                       form="settings-form"
+                      onClick={() => handleDelete(user)}
                     ></Button>
                   </td>
                 </tr>
