@@ -4,8 +4,20 @@
 Central index for technical documentation of the UserHub project.
 </p>
 
+## Getting Started
+
+### Package Manager
+
+This project uses **npm workspaces** for dependency management.
+
+Using **npm** is strongly recommended to ensure proper behavior across the workspace.
+
+Other package managers (such as Yarn or pnpm) are not officially supported and may cause unexpected issues.
+
 <h2> Table of Contents </h2>
 
+- [Getting Started](#getting-started)
+  - [Package Manager](#package-manager)
 - [Documentation Map](#documentation-map)
 - [Quick Access](#quick-access)
 - [Local API Docs](#local-api-docs)
