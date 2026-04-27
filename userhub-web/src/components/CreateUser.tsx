@@ -33,17 +33,6 @@ export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
   const isPending =
     createUserMutation.isPending || updateUserMutation.isPending;
 
-  const schema = z.object({
-    name: z.string().min(3, "Name is required - Min 3 characters"),
-    email: z.string().email("Invalid e-mail"),
-    company: z.string().optional(),
-    password: z.string().min(6, "Min 6 characters"),
-    // password:
-    //   mode === "create"
-    //     ? z.string().min(6, "Min 6 characters")
-    //     : z.string().optional(),
-  });
-
   function handleSuccess() {
     queryClient.invalidateQueries({ queryKey: ["users"] });
 
@@ -54,6 +43,22 @@ export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    const createSchema = z.object({
+      name: z.string().min(3, "Name is required - Min 3 characters"),
+      email: z.string().email("Invalid e-mail"),
+      company: z.string().optional(),
+      password: z.string().min(6, "Min 6 characters"),
+    });
+
+    const updateSchema = z.object({
+      name: z.string().min(3, "Name is required - Min 3 characters"),
+      email: z.string().email("Invalid e-mail"),
+      company: z.string().optional(),
+      password: z.string().optional(),
+    });
+
+    const schema = mode === "create" ? createSchema : updateSchema;
 
     const formData = new FormData(event.currentTarget);
 
@@ -85,13 +90,23 @@ export function CreateUser({ onClose, mode, selectedUser }: CreateUserProps) {
 
     // Proceed with mutation
     if (mode === "create") {
+      const result = createSchema.safeParse(data);
+
+      if (!result.success) {
+        return;
+      }
       createUserMutation.mutate(result.data);
-    } else if (selectedUser) {
+    } else {
+      const result = updateSchema.safeParse(data);
+
+      if (!result.success) {
+        return;
+      }
+
       updateUserMutation.mutate({
-        id: selectedUser.id,
-        name: result.data.name,
-        email: result.data.email,
-        company: result.data.company,
+        id: selectedUser!.id,
+        ...result.data,
+        ...(result.data.password && { password: result.data.password }),
       });
     }
   }
