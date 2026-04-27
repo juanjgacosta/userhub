@@ -16,6 +16,7 @@ System architecture reference for the UserHub monorepo, covering frontend, backe
   - [State and Data Fetching](#state-and-data-fetching)
 - [Cross-Cutting Concerns](#cross-cutting-concerns)
 - [Architecture Diagram](#architecture-diagram)
+- [Return to Root README](#return-to-root-readme)
 
 ## Overview
 
@@ -154,3 +155,7 @@ graph TD
   DB --> RESP[HTTP JSON Response]
   RESP --> U
 ```
+
+## Return to Root README
+
+- [Back to `userHub/README.md`](../README.md)

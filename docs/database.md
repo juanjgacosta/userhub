@@ -13,6 +13,7 @@ Database structure and migration reference for UserHub API.
 - [Migrations History](#migrations-history)
 - [Startup and Seed Behavior](#startup-and-seed-behavior)
 - [Avatar Storage Relationship](#avatar-storage-relationship)
+- [Return to Root README](#return-to-root-readme)
 
 ## Overview
 
@@ -98,3 +99,7 @@ userhub-api/tmp/avatar/
 The database stores only the avatar filename/path reference in `users.avatar`.
 
 When avatar updates/removals occur, service logic keeps filesystem and DB references synchronized.
+
+## Return to Root README
+
+- [Back to `userHub/README.md`](../README.md)

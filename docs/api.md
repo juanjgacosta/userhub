@@ -20,6 +20,7 @@ UserHub REST API reference with endpoints, authentication requirements, payloads
   - [Delete User](#delete-user)
   - [Update User Avatar](#update-user-avatar)
 - [Swagger Documentation](#swagger-documentation)
+- [Return to Root README](#return-to-root-readme)
 
 ## Overview
 
@@ -292,3 +293,7 @@ The API also exposes OpenAPI docs via Swagger UI:
 ```bash
 http://localhost:4000/documentation
 ```
+
+## Return to Root README
+
+- [Back to `userHub/README.md`](../README.md)
