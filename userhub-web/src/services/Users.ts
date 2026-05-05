@@ -1,3 +1,4 @@
+import tokens from '../../tokens.json'
 export interface User {
   id: string
   name: string
@@ -23,6 +24,16 @@ export interface UpdateUserDTO {
   avatar?: string
 }
 
+function getToken(): string {
+  const token = tokens?.token?.trim()
+
+  if (!token) {
+    throw new Error('Token is missing in userhub-web/tokens.json')
+  }
+
+  return token
+}
+
 export async function getUsers(): Promise<User[]> {
   const response = await fetch('http://localhost:4000/users')
 
@@ -34,12 +45,12 @@ export async function getUsers(): Promise<User[]> {
 }
 
 export async function createUser(data: CreateUserDTO) {
+  const token = getToken()
   const response = await fetch('http://localhost:4000/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTc3NzI0NzAyNiwiZXhwIjoxNzc3MjQ4ODI2LCJzdWIiOiJhYjU0ZGNiMS01NTJjLTQxZTctYjdmYy0xMDcxMGY1YTQ1ZGIifQ.tSKmpwLdR1iV60SXL018_Yp9JEkFLUEbmeQ2lPohwF4',
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(data),
   })
@@ -52,12 +63,12 @@ export async function createUser(data: CreateUserDTO) {
 }
 
 export async function updateUser({ id, ...data }: UpdateUserDTO) {
+  const token = getToken()
   const response = await fetch(`http://localhost:4000/users/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTc3NzI0NzAyNiwiZXhwIjoxNzc3MjQ4ODI2LCJzdWIiOiJhYjU0ZGNiMS01NTJjLTQxZTctYjdmYy0xMDcxMGY1YTQ1ZGIifQ.tSKmpwLdR1iV60SXL018_Yp9JEkFLUEbmeQ2lPohwF4',
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(data),
   })
@@ -70,12 +81,12 @@ export async function updateUser({ id, ...data }: UpdateUserDTO) {
 }
 
 export async function deleteUser(id: string): Promise<void> {
+  const token = getToken()
   const response = await fetch(`http://localhost:4000/users/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGVtYWlsLmNvbSIsImlhdCI6MTc3NzI1MDQxMSwiZXhwIjoxNzc3MjUyMjExLCJzdWIiOiJhYjU0ZGNiMS01NTJjLTQxZTctYjdmYy0xMDcxMGY1YTQ1ZGIifQ.ZpBsYdps-KtsUjEUIvRppS2GMh-nptU6YqGg-Wdg-q8',
+      Authorization: `Bearer ${token}`,
     },
   })
 
